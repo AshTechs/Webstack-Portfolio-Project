@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='appoint.css') }}">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <header class="navbar">
+        <div class="logo"><img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="Logo"></div>
+        <div class="navbar-content">
+            <div class="customer-id">Customer ID</div>
+            <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- Side bar -->
+    <aside class="sidebar">
+        <div class="profile-pict">
+            <img src="profile-pic-placeholder.jpg" alt="Profile Picture">
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="{{ url_for('dashboard') }}"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="{{ url_for('profile') }}"><i class="fas fa-edit"></i> Edit Profile</a></li>
+                <li><a href="{{ url_for('appointment') }}"><i class="fas fa-calendar-alt"></i> Appointment</a></li>
+                <li><a href="{{ url_for('notification') }}"><i class="fas fa-bell"></i> Notification</a></li>
+                <li><a href="{{ url_for('setting') }}"><i class="fas fa-cog"></i> Setting</a></li>
+                <li><a href="{{ url_for('help') }}"><i class="fas fa-question-circle"></i> Help Center</a></li>
+                <li><a href="Logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                <li class="del"><a href="Delete"><i class="fas fa-trash-alt"></i> Delete Account</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+   <main class="appoint-content">
+    <!-- Marquee with system updates -->
+    <div class="marquee">
+        <marquee>System updates: Stay informed with the latest changes...</marquee>
+    </div>
+
+    <!-- Booking Form -->
+    <section class="appointment-booking">
+        <h2>Book an Appointment</h2>
+        <form id="booking-form">
+            <div class="form-group2">
+                <label for="appointment-date">Date:</label>
+                <input class="Date" type="date" id="appointment-date" required>
+            </div>
+            <div class="form-group2">
+                <label for="appointment-time">Time:</label>
+                <input type="time" id="appointment-time" required>
+            </div>
+            <div class="form-group2">
+                <label for="test-type">Test of Choice:</label>
+                <select id="test-type" required>
+                    <option value="" disabled selected>Select Test</option>
+                    <option value="Blood Test">Blood Test</option>
+                    <option value="X-Ray">X-Ray</option>
+                    <option value="MRI">MRI</option>
+                </select>
+            </div>
+            <div class="form-group2">
+                <label for="facility-name">Facility:</label>
+                    <select id="facility-name" name="facility-name" required>
+                        <option value="" disabled selected>Select Laboratory</option>
+                        <option value="SMH">St. Mary's Hospital Laboratory</option>
+                        <option value="BRH">Berekum Regional Hospital Laboratory</option>
+                    </select>
+            </div>
+            <div class="form-group2">
+                <label for="delivery-mode">Mode of Delivery:</label>
+                <select id="delivery-mode" required>
+                    <option value="" disabled selected>Select mode of delivery</option>
+                    <option value="In-Person">In-Person</option>
+                    <option value="Home Services">Home Services</option>
+                    <option value="Phone Call">Phone Call</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-save">Book Appointment</button>
+        </form>
+    </section>
+
+    <!-- Appointment History -->
+    <section class="appointment-history">
+        <h2>Appointment History</h2>
+        <table id="history-table">
+            <thead>
+                <tr>
+                    <th>Appointment ID</th>
+                    <th>Details (Date, Time, Mode)</th>
+                    <th>Test of Request</th>
+                    <th>Status</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- New appointments will be added here dynamically -->
+            </tbody>
+        </table>
+    </section>
+</main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> </a>
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> </a>
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i> </a>
+            <a href="https://github.com" target="_blank"><i class="fab fa-github"></i> </a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Function to handle appointment booking
+document.getElementById('booking-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Get form values
+    const appointmentDate = document.getElementById('appointment-date').value;
+    const appointmentTime = document.getElementById('appointment-time').value;
+    const testType = document.getElementById('test-type').value;
+    const deliveryMode = document.getElementById('delivery-mode').value;
+
+    // Generate a unique appointment ID (for simplicity, using current timestamp)
+    const appointmentID = Date.now();
+
+    // Create a new table row with the appointment details
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = `
+        <td>${appointmentID}</td>
+        <td>${appointmentDate} ${appointmentTime}, ${deliveryMode}</td>
+        <td>${testType}</td>
+        <td>Pending</td>
+        <td><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i></td>
+    `;
+
+    // Append the new row to the history table
+    document.getElementById('history-table').querySelector('tbody').appendChild(newRow);
+
+    // Clear the form
+    document.getElementById('booking-form').reset();
+});
+
+    </script>
+
+</body>
+</html>
