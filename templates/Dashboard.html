@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dash.css') }}">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <header class="navbar">
+        <div class="logo"><img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="Logo"></div>
+        <div class="navbar-content">
+            <div class="customer-id">Customer ID</div>
+            <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- Side bar -->
+    <aside class="sidebar">
+        <div class="profile-pict">
+            <img src="{{ url_for('static', filename='.jpg') }}" alt="Profile Picture">
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="{{ url_for('dashboard') }}"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="{{ url_for('profile') }}"><i class="fas fa-edit"></i> Edit Profile</a></li>
+                <li><a href="{{ url_for('appointment') }}"><i class="fas fa-calendar-alt"></i> Appointment</a></li>
+                <li><a href="{{ url_for('notification') }}"><i class="fas fa-bell"></i> Notification</a></li>
+                <li><a href="{{ url_for('setting') }}"><i class="fas fa-cog"></i> Setting</a></li>
+                <li><a href="{{ url_for('help') }}"><i class="fas fa-question-circle"></i> Help Center</a></li>
+                <li><a href="Logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                <li = class="del"><a href="Delete"><i class="fas fa-trash-alt"></i> Delete Account</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main content area -->
+    <main class="dashboard-content">
+        <!-- Marquee with system updates -->
+        <div class="marquee">
+            <marquee>System updates: Stay informed with the latest changes...</marquee>
+        </div>
+
+        <!-- Lab services -->
+        <div class="lab-services">
+            <!-- Lab 1 -->
+            <div class="lab1">St. Mary's Hospital Laboratory</div>
+            <div id="lab1" class="dropdown-content">
+                <h4>Available Departments</h4>
+                <a href="#">Hematology</a>
+                <a href="#">Biochemistry</a>
+                <a href="#">Microbiology</a>
+                <a href="#">Parasitology</a>
+                <a href="#">Blood Banking</a>
+                <a href="#">General Laboratory Services</a>
+            </div>
+
+            <!-- Lab 2 -->
+            <div class="lab2">Berekum Regional Hospital Laboratory</div>
+            <div id="lab2" class="dropdown-content">
+                <h4>Available Departments</h4>
+                <a href="#">Hematology</a>
+                <a href="#">Biochemistry</a>
+                <a href="#">Microbiology</a>
+                <a href="#">Parasitology</a>
+                <a href="#">Blood Banking</a>
+                <a href="#">Histopathology</a>
+                <a href="#">Molecular</a>
+                <a href="#">General Laboratory Services</a>
+            </div>
+
+            <!-- Add more labs with dropdowns here in the same manner -->
+        </div>
+
+        <!-- Test results section -->
+        <div id="test-results" class="test-results">
+            <h3>Tests Available</h3>
+            <p>Select a department to view tests.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> </a>
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> </a>
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i> </a>
+            <a href="https://github.com" target="_blank"><i class="fab fa-github"></i> </a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        const testsData = {
+            "Hematology": ["Complete Blood Count", "Hemoglobin", "Hematocrit", "Platelet Count"],
+            "Biochemistry": ["Liver Function Test", "Kidney Function Test", "Blood Sugar", "Lipid Profile"],
+            "Microbiology": ["Bacterial Culture", "Antibiotic Sensitivity Test", "Urine Culture", "Sputum Culture"],
+            "Parasitology": ["Stool Analysis", "Malaria Test", "Eosinophil Count"],
+            "Blood Banking": ["Blood Typing", "Crossmatching", "Antibody Screen"],
+            "General Laboratory Services": ["Urinalysis", "Blood Gas Test", "Electrolyte Panel"],
+            "Histopathology": ["Tissue Biopsy", "Cytology", "Immunohistochemistry"],
+            "Molecular": ["PCR Test", "DNA Sequencing", "Genotyping"],
+        };
+
+        function showTests(department) {
+            const testResultsDiv = document.getElementById('test-results');
+            testResultsDiv.innerHTML = '';
+
+            const header = document.createElement('h3');
+            header.textContent = `Tests Available in ${department}`;
+            testResultsDiv.appendChild(header);
+
+            const ul = document.createElement('ul');
+            testsData[department].forEach(test => {
+                const li = document.createElement('li');
+                li.textContent = test;
+                ul.appendChild(li);
+            });
+            testResultsDiv.appendChild(ul);
+        }
+
+        document.querySelectorAll('.dropdown-content a').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const department = event.target.textContent;
+                showTests(department);
+            });
+        });
+    </script>
+</body>
+</html>
