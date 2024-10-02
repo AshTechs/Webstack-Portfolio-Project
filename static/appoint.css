@@ -1,0 +1,85 @@
+.appoint-content {
+    margin-left: 220px;
+    padding: 20px;
+    flex: 1;
+}
+
+/* Appointment Section */
+.appointment-booking {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-booking h2 {
+    margin-bottom: 20px;
+}
+
+.form-group2 {
+    display: block;
+    margin-bottom: 30px;
+    font-weight: 600;
+    width: fit-content;
+}
+
+.form-group2 input, .form-group2 select {
+    padding: 10px;
+    margin: 0 0 25px;
+    border-color: #999;
+    background-color: rgba(0, 0, 0, 0.1);
+    font-weight: 600
+}
+
+.form-group2 label {
+    margin-right: 10px;
+    font-weight: 600;
+}
+
+.form-group2 input[class="Date"] {
+    text-transform: uppercase;
+}
+
+.btn-save {
+    padding: 10px;
+    background: #929191c5;
+    border-radius: 5px;
+    border-color: aqua;
+}
+
+/* Appointment History */
+.appointment-history {
+    margin-top: 40px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-history table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.appointment-history table, .appointment-history th, .appointment-history td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.appointment-history th {
+    background-color: #f4f4f4;
+}
+
+.appointment-history td {
+    text-align: center;
+}
+
+.appointment-history td.rating {
+    color: #ffd700;
+}
+
+@media (max-width: 768px) {
+    .appoint-content {
+        margin-left: 0;
+    }
+}

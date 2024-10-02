@@ -1,0 +1,136 @@
+/* Dashboard content */
+.dashboard-content {
+    margin-left: 220px;
+    padding: 20px;
+    flex: 1;
+}
+
+.marquee {
+    background-color: #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.lab-services {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.lab1, .lab2 {
+    background-color: #defe;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.lab1:hover, .lab2:hover {
+    background-color: #6fbaf796;
+}
+
+/* Dropdown content for departments */ 
+.dropdown-content {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.dropdown-content h4 {
+    text-decoration: underline;
+    color: #6fbaf7;
+}
+
+.dropdown-content a {
+    display: block; 
+    padding: 5px 0;
+    color: #555;
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    width: fit-content;
+}
+
+.dropdown-content a:hover {
+    color: #000;
+}
+
+.dropdown-content a::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: 2px;
+    left: 0;
+    background-color: #ee0653;
+    transition: width 0.5s ease-in-out;
+}
+
+.dropdown-content a:hover::before {
+    width: 100%;
+}
+
+/* Test display section */
+.test-results {
+    position: fixed;
+    background-color: #6fbaf796;
+    padding: 20px;
+    margin-left: 50rem;
+    top: 8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.test-results ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.test-results ul li {
+    background-color: #eee;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+        position: static;
+        width: 100%;
+    }
+
+    .lab-services {
+        grid-template-columns: repeat(1, 1fr)
+    }
+
+    .test-results {
+        position: fixed;
+        background-color: #6fbaf796;
+        padding: 20px;
+        margin-left: 47%;
+        margin-top: 4rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .test-results ul li {
+        background-color: #eee;
+        padding: 5px;
+        margin: 2px;
+    }
+
+    .dashboard-content {
+        margin-left: 0;
+    }
+
+    .footer .social-links {
+        flex-direction: column;
+    }
+}
+    

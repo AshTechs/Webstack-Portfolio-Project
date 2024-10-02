@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Archivo', sans-serif;
+    background-color: #CDCDFF;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Onboarding container */
+.onboarding-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 80%;
+    max-width: 500px;
+    overflow: hidden;
+}
+
+/* Image */
+.image-container img {
+    width: 100%;
+    border-radius: 10px;
+    opacity: 0;
+    animation: slideDown 1s forwards ease-in-out;
+}
+
+/* Message section */
+.message-container {
+    margin: 2rem 0;
+    font-size: 1.2rem;
+    display: none;
+    opacity: 0;
+    animation: slideUp 1.5s forwards ease-in-out;
+}
+
+p {
+    font-family: 'Archivo', sans-serif;
+}
+
+.message-container .title {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: center;
+}
+
+.message-container .subtitle {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* Buttons */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Skip button */
+.skip-btn {
+    width: 112px;
+    height: 56px;
+    padding: 16px 20px;
+    border-radius: 24px;
+    border: 1px solid #04BD8F;
+    opacity: 0;
+    color: #04BD8F;
+    font-family: 'Archivo', sans-serif;
+    font-size: 16px;
+    background-color: transparent;
+    transition: opacity 0.3s;
+}
+
+/* Next button */
+.next-btn {
+    width: 242px;
+    height: 56px;
+    padding: 16px 20px;
+    border-radius: 24px;
+    background-color: #04BD8F;
+    color: white;
+    font-family: 'Archivo', sans-serif;
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Animation for the image and message */
+@keyframes slideDown {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
