@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - EasyLab</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css')}}">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="form-container">
+            <h1>Welcome Back</h1>
+            <form method="POST" action="{{ url_for('login') }}">
+                {{ form.hidden_tag() }}
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+
+                <label for="password">Password</label>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    <span class="toggle-password" onclick="togglePassword()">👁️</span>
+                </div>
+
+                <div class="forgot-password">
+                    <a href="#">Forgotten password?</a>
+                </div>
+
+                <button type="submit" id="loginBtn">Sign in</button>
+
+                <div class="signup-link">
+                    <p>Don't have an account? <a href="{{ url_for('signup') }}">Signup</a></p>
+                </div>
+
+                <!-- Success message -->
+                <div id="successMessage" class="success-message">
+                    <div class="checkmark-circle">
+                        <div class="checkmark"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='login.js')}}"></script>
+</body>
+</html>
