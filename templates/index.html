@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyLab Onboarding</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}">
+</head>
+<body>
+    <div class="onboarding-container">
+        <!-- Image section -->
+        <div class="image-container">
+            <img id="scientistImage" src="{{ url_for('static', filename='img/MLSD.jpg')}}" alt="Laboratory Scientist">
+        </div>
+
+        <!-- Message section -->
+        <div id="message-container" class="message-container">
+            <!-- Messages will be dynamically inserted here -->
+        </div>
+
+        <!-- Button section -->
+        <div class="button-container">
+            <button id="skipBtn" class="skip-btn">Skip</button>
+            <button id="nextBtn" class="next-btn">Next</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js')}}"></script>
+</body>
+</html>
